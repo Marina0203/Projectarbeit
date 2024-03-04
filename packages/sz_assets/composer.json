@@ -1,0 +1,27 @@
+{
+	"name": "sunzinet/sz-assets",
+	"description": "Provides project specific logic, configurations and templates.",
+	"suggest": {
+		"typo3/cms-core": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"SUNZINET\\SzAssets\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "sz_assets"
+		}
+	},
+	"type": "typo3-cms-extension",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Christian Efthimoglou",
+			"email": "christian.efthimoglou@sunzinet.com",
+			"homepage": "https://www.sunzinet.com",
+			"role": "Developer"
+		}
+	]
+}

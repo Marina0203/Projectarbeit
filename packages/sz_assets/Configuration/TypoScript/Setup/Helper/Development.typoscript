@@ -1,0 +1,20 @@
+// Sets optimum settings for local development.
+[applicationContext == "Development/Local"]
+  config {
+    additionalHeaders {
+      1695980075.header = Cache-Control: no-cache, no-store, must-revalidate
+    }
+
+    admPanel = 1
+    cache_period = 0
+    compressCss = 0
+    compressJs = 0
+    concatenateCss = 0
+    concatenateJs = 0
+    contentObjectExceptionHandler = 0
+    debug = 1
+    disablePrefixComment = 0
+    no_cache = 1
+    sendCacheHeaders = 1
+  }
+[end]

@@ -1,0 +1,14 @@
+// Sets security related headers that are seen as best practice by OWASP
+// See: https://owasp.org/www-project-secure-headers/
+config.additionalHeaders {
+  1151019900.header = Strict-Transport-Security: max-age=31536000; includeSubDomains
+  1151019902.header = X-Frame-Options: deny
+  1151019904.header = X-Content-Type-Options: nosniff
+  1151019906.header = Content-Security-Policy: default-src 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content
+  1151019908.header = X-Permitted-Cross-Domain-Policies: none
+  1151019910.header = Referrer-Policy: no-referrer
+  1151019912.header = Cross-Origin-Embedder-Policy: require-corp
+  1151019914.header = Cross-Origin-Opener-Policy: same-origin
+  1151019916.header = Cross-Origin-Resource-Policy: same-origin
+  1151019918.header = Permissions-Policy: accelerometer=(),ambient-light-sensor=(),autoplay=(),battery=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),fullscreen=(),gamepad=(),geolocation=(),gyroscope=(),layout-animations=(self),legacy-image-formats=(self),magnetometer=(),microphone=(),midi=(),oversized-images=(self),payment=(),picture-in-picture=(),publickey-credentials-get=(),speaker-selection=(),sync-xhr=(self),unoptimized-images=(self),unsized-media=(self),usb=(),screen-wake-lock=(),web-share=(),xr-spatial-tracking=()
+}

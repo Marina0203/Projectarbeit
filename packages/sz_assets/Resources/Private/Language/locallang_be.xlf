@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:sz_assets/Resources/Private/Language/locallang_be.xlf" date="2023-05-12T14:12:15Z" product-name="sz_assets">
+		<header />
+		<body>
+			<trans-unit id="backendLayouts.default.title" resname="backendLayouts.default.title">
+				<source>Default</source>
+			</trans-unit>
+			<trans-unit id="backendLayouts.default.columns.1" resname="backendLayouts.default.columns.1">
+				<source>Content area</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

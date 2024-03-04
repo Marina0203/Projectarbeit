@@ -1,0 +1,2 @@
+@import 'EXT:sz_assets/Configuration/TsConfig/Page/BackendLayouts/*'
+@import 'EXT:sz_assets/Configuration/TsConfig/Page/'

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## #custom
+## Description: Flushes all caches
+## Usage: flush
+## Example: ddev flush
+
+typo3 cache:flush

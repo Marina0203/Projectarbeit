@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:sz_assets/Resources/Private/Language/locallang_db.xlf" date="2023-03-03T15:24:52Z" product-name="sz_assets">
+		<header />
+		<body>
+			<trans-unit id="tt_content.header_layout.label" resname="tt_content.header_layout.label">
+				<source>Header Tag</source>
+				<target>Header Tag</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

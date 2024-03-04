@@ -1,0 +1,20 @@
+// External imports
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/Styling/setup.typoscript'
+@import 'EXT:sz_content_elements/Configuration/TypoScript/setup.typoscript'
+
+// General
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/General/Page.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/General/Meta.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/General/Configuration.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/General/Robots.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/General/PageTitleProviders.typoscript'
+
+// Helper
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/Development.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/DynamicContent.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/SecurityHeaders.typoscript'
+
+// Extensions
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Extensions/Container.typoscript'
+@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Extensions/FluidStyledContent.typoscript'

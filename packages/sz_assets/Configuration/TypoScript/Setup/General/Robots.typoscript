@@ -1,0 +1,41 @@
+robots = PAGE
+robots {
+  typeNum = 201
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders {
+      10 {
+        header = Content-type: text/plain
+      }
+    }
+  }
+  10 = TEXT
+  10 {
+    value (
+User-agent: *
+Disallow: /
+    )
+  }
+}
+
+[applicationContext == "Production"]
+  robots.10.value (
+User-agent: *
+
+# Only allow speaking URLs
+Disallow: /*?id=*
+Disallow: /*&id=*
+
+# L=0 is the default language
+Disallow: /*?L=0*
+Disallow: /*&L=0*
+
+# typeNum = 98 is usually the print version
+Disallow: /*?type=98*
+Disallow: /*&type=98*
+
+# YOAST SEO
+Disallow: /*?type=1480321830*
+Disallow: /*&type=1480321830*
+  )
+[end]

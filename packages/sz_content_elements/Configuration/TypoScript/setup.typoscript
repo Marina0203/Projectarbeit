@@ -1,0 +1,24 @@
+lib.contentElement {
+  templateName = Default
+  templateRootPaths {
+    0 = EXT:fluid_styled_content/Resources/Private/Templates/
+    10 = {$styles.templates.templateRootPath}
+    20 = EXT:sz_content_elements/Resources/Private/Templates/
+    30 = EXT:sz_content_elements/Resources/Private/ContentElements/
+    40 = {$plugin.tx_szcontentelements.view.templateRootPath}
+  }
+
+  partialRootPaths {
+    0 = EXT:fluid_styled_content/Resources/Private/Partials/
+    10 = {$styles.templates.partialRootPath}
+    20 = EXT:sz_content_elements/Resources/Private/Partials/
+    40 = {$plugin.tx_szcontentelements.view.partialRootPath}
+  }
+
+  layoutRootPaths {
+    0 = EXT:fluid_styled_content/Resources/Private/Layouts/
+    10 = {$styles.templates.layoutRootPath}
+    20 = EXT:sz_content_elements/Resources/Private/Layouts/
+    40 = {$plugin.tx_szcontentelements.view.layoutRootPath}
+  }
+}

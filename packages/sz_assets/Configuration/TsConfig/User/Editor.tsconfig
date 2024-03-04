@@ -1,0 +1,8 @@
+[!backend.user.isAdmin]
+  options {
+    clearCache {
+      all = 0
+      pages = 0
+    }
+  }
+[end]

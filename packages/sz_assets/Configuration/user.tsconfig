@@ -1,0 +1,23 @@
+@import 'EXT:sz_assets/Configuration/TsConfig/User/Admin.tsconfig'
+@import 'EXT:sz_assets/Configuration/TsConfig/User/Editor.tsconfig'
+
+options {
+  createFoldersInEB = 1
+
+  file_list {
+    enableDisplayThumbnail = activated
+    uploader.defaultAction = Rename
+  }
+
+  pageTree {
+    doktypesToShowInNewPageDragArea := removeFromList(199)
+    excludeDoktypes := addToList(199)
+    showDomainNameWithTitle = 1
+    showNavTitle = 1
+    showPageIdWithTitle = 1
+    showPathAboveMounts = 1
+  }
+
+  showDuplicate = 1
+  showHistory = 1
+}

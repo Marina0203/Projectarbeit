@@ -1,0 +1,7 @@
+plugin.tx_szcontentelements {
+  view {
+    templateRootPath =
+    partialRootPath =
+    layoutRootPath =
+  }
+}

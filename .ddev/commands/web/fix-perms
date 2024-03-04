@@ -1,0 +1,27 @@
+#!/bin/bash
+
+## #custom
+## Description: Fix file and folder permissions
+## Usage: fix-perms [PATHS]
+## Example: "ddev fix-perms", "ddev fix-perms public/typo3temp", "ddev fix-perms /var/www/html/example web/fileadmin"
+
+paths=()
+
+if [ -n "$*" ]; then
+  paths+=("${@}")
+else
+  paths+=("/var/www/html/var")
+fi
+
+default_path="/var/www/html"
+
+for path in "${paths[@]}"; do
+    # Everything - Set user and group
+    (cd "$default_path" || exit 1; sudo chown -R "${DDEV_UID}":"${DDEV_GID}" "$path")
+
+    # Folders - Recommended: 2770; Most compatible: 0775
+    (cd "$default_path" || exit 1; sudo find "$path" -type d -exec chmod 2770 {} \;)
+
+    # Files - Recommended: 0660; Most compatible: 0664
+    (cd "$default_path" || exit 1; sudo find "$path" -type f -exec chmod 0660 {} \;)
+done

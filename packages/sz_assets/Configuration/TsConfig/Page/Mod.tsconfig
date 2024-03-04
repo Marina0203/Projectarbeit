@@ -1,0 +1,11 @@
+mod {
+  web_layout {
+    allowInconsistentLanguageHandling = 1
+  }
+
+  web_list {
+    csvDelimiter = ;
+    csvQuote = "
+    itemsLimitPerTable = 10
+  }
+}

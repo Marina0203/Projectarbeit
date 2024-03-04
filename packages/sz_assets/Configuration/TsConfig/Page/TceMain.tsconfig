@@ -1,0 +1,19 @@
+TCEMAIN {
+  permissions {
+    userid = 1
+    groupid = 1
+    user = 31
+    group = 31
+    everybody = 0
+  }
+
+  table {
+    pages {
+      disablePrependAtCopy = 1
+    }
+
+    tt_content {
+      disablePrependAtCopy = 1
+    }
+  }
+}

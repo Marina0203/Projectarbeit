@@ -1,0 +1,27 @@
+{
+	"name": "sunzinet/sz-content-elements",
+	"description": "Project related content elements.",
+	"suggest": {
+		"typo3/cms-fluid-styled-content": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"SUNZINET\\SzContentElements\\": "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "sz_content_elements"
+		}
+	},
+	"type": "typo3-cms-extension",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Christian Efthimoglou",
+			"email": "christian.efthimoglou@sunzinet.com",
+			"homepage": "https://www.sunzinet.com",
+			"role": "Developer"
+		}
+	]
+}

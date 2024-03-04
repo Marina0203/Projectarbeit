@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## #custom
+## Description: Calls all cleanup-commands after updating reference index
+## Usage: cleanup
+## Example: ddev cleanup
+
+typo3 referenceindex:update --no-interaction
+typo3 cleanup:flexforms --no-interaction
+typo3 cleanup:deletedrecords --no-interaction
+typo3 cleanup:missingrelations --update-refindex --no-interaction
+typo3 cleanup:orphanrecords --no-interaction

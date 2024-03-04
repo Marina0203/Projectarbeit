@@ -1,0 +1,72 @@
+{
+	"name": "sunzinet/typo3-template",
+	"description" : "SUNZINET TYPO3 CMS Distribution - Gitlab Project Template",
+	"license": "GPL-2.0-or-later",
+	"type": "project",
+	"config": {
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"helhum/dotenv-connector": true
+		},
+		"platform": {
+			"php": "8.2"
+		},
+		"sort-packages": true
+	},
+	"repositories": {
+		"local-packages": {
+			"type": "path",
+			"url": "packages/*"
+		}
+	},
+	"require": {
+		"helhum/dotenv-connector": "^3.0",
+		"helhum/typo3-console": "^8.0",
+		"sunzinet/sz-assets": "@dev",
+		"sunzinet/sz-content-elements": "@dev",
+		"typo3/cms-backend": "~12.4",
+		"typo3/cms-belog": "~12.4",
+		"typo3/cms-beuser": "~12.4",
+		"typo3/cms-core": "~12.4",
+		"typo3/cms-dashboard": "~12.4",
+		"typo3/cms-extbase": "~12.4",
+		"typo3/cms-extensionmanager": "~12.4",
+		"typo3/cms-filelist": "~12.4",
+		"typo3/cms-fluid": "~12.4",
+		"typo3/cms-fluid-styled-content": "~12.4",
+		"typo3/cms-form": "~12.4",
+		"typo3/cms-frontend": "~12.4",
+		"typo3/cms-impexp": "~12.4",
+		"typo3/cms-info": "~12.4",
+		"typo3/cms-install": "~12.4",
+		"typo3/cms-lowlevel": "~12.4",
+		"typo3/cms-rte-ckeditor": "~12.4",
+		"typo3/cms-seo": "~12.4",
+		"typo3/cms-setup": "~12.4",
+		"typo3/cms-sys-note": "~12.4",
+		"typo3/cms-t3editor": "~12.4",
+		"typo3/cms-tstemplate": "~12.4",
+		"typo3/cms-viewpage": "~12.4",
+		"typo3/cms-workspaces": "~12.4"
+	},
+	"require-dev": {
+		"deployer/deployer": "^7.3",
+		"phpstan/phpstan": "^1.10",
+		"roave/security-advisories": "dev-latest",
+		"typo3/coding-standards": "^0.7"
+	},
+	"scripts":{
+		"typo3-cms-scripts": [
+			"typo3 extension:setup"
+		],
+		"post-autoload-dump": [
+			"@typo3-cms-scripts"
+		]
+	},
+	"extra": {
+		"helhum/dotenv-connector": {
+			"env-file": "../../.env"
+		}
+	}
+}

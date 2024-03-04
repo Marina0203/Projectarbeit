@@ -1,0 +1,9 @@
+[backend.user.isAdmin]
+  admPanel {
+    enable.all = 1
+  }
+
+  options {
+    clearCache.all = 1
+  }
+[end]

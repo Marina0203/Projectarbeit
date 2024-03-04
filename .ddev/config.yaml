@@ -1,0 +1,36 @@
+name: projektarbeit
+type: typo3
+docroot: public
+php_version: "8.2"
+webserver_type: apache-fpm
+router_http_port: "80"
+router_https_port: "443"
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+  type: mariadb
+  version: "10.6"
+nfs_mount_enabled: false
+use_dns_when_possible: true
+composer_version: "2"
+nodejs_version: "16"
+timezone: Europe/Berlin
+omit_containers: []
+webimage_extra_packages: [automake,build-essential]
+web_environment:
+  - TYPO3_CONTEXT=Development/Local
+  - TYPO3_DISABLE_CORE_UPDATER=1
+  - TYPO3_DB_NAME=db
+  - TYPO3_DB_HOST=db
+  - TYPO3_DB_PORT=3306
+  - TYPO3_DB_PASSWORD=db
+  - TYPO3_DB_USERNAME=db
+  - TYPO3_DB_CHARSET=utf8mb4
+  - TYPO3_DB_COLLATE=utf8mb4_unicode_ci
+  - TYPO3_DB_DRIVER=mysqli
+  - TYPO3_DB_SOCKET=
+  - TYPO3_SYS_SITENAME=DDEV - ${DDEV_SITENAME}
+  - TYPO3_SYS_ENCRYPTION_KEY=3d2dc494b042ea2736x314913d5a93e53698bc550a2f858dec98018ce46o7fe94c7fdb3cc93ab9fc1p3c222e3l13ka11
+  - TYPO3_BE_INSTALL_TOOL_PASSWORD=$$argon2i$$v=19$$m=65536,t=4,p=1$$VEpjNGNvYmxXWVUyd0FHVQ$$6FjtzBai+4XycyPfGl51jmRRfCGcdLZq1z/ASt1+j5A
+  - TYPO3_BE_ADMIN_ONLY=0

@@ -1,0 +1,120 @@
+// Required
+@import "~bootstrap/scss/functions";
+
+// colors
+$white: #fff;
+$gray-100: #f0f0f0;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #c5c5c5;
+$gray-500: #979797;
+$gray-600: #6b737b;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #0f1011;
+$black: #000;
+
+$primary: #c4ff47;
+$secondary: $gray-500;
+$success: #198754;
+$info: #638db9;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: $gray-100;
+$dark: $gray-900;
+
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "medium": $gray-600,
+    "dark": $dark
+);
+
+// body
+$body-color: $gray-600;
+
+// links
+$link-color: $primary;
+$link-decoration: none;
+
+// Grid containers
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1170px
+);
+
+$grid-gutter-width: 1.875rem;
+
+// Navbar
+$navbar-padding-y: 0;
+$navbar-nav-link-padding-x: 1.75rem;
+$navbar-light-color: $dark;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+
+// Navs
+$nav-link-font-weight: 600;
+$nav-link-color: $dark;
+$nav-link-hover-color: $primary;
+$nav-link-padding-y: 1.25rem;
+$nav-link-padding-x: 1.875rem;
+
+// Dropdowns
+$dropdown-color: $dark;
+$dropdown-min-width: 280px;
+$dropdown-item-padding-y: .625rem;
+$dropdown-item-padding-x: .625rem;
+$dropdown-padding-x: 0;
+$dropdown-padding-y: 0;
+$dropdown-border-radius: 0;
+$dropdown-inner-border-radius: 0;
+$dropdown-link-color: $dark;
+$dropdown-link-hover-color: $primary;
+$dropdown-link-hover-bg: transparent;
+$dropdown-link-active-color: $primary;
+$dropdown-link-active-bg: transparent;
+$dropdown-header-padding-y: 7px;
+$dropdown-header-color: $dropdown-link-color;
+$dropdown-spacer: 0;
+
+// Typography
+$font-family-sans-serif: 'Open Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.625;
+
+// Headings
+$h1-font-size: $font-size-base * 2;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.5;
+$h4-font-size: $font-size-base * 1.125;
+$h5-font-size: $font-size-base;
+$h6-font-size: $font-size-base;
+
+$headings-color: $dark;
+$headings-font-weight: 600;
+$headings-line-height: 1.25;
+$headings-margin-bottom: 1.375rem;
+
+// Inputs
+$input-btn-padding-y: 1rem;
+$input-btn-padding-x: 1rem;
+
+// Buttons
+$btn-color: $white;
+$btn-link-color: $white;
+$btn-border-radius: 4px;
+
+// Cards
+$card-spacer-x: 1.875rem;
+$card-border-color: transparent;
+$card-border-width: 0;
+$card-border-radius: 0;

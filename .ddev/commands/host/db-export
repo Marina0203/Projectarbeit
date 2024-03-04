@@ -1,0 +1,23 @@
+#!/bin/bash
+
+## #custom
+## Description: Export project db to zipped sql file (.ddev/backup/db-dump.sql.gz)
+## Usage: db-export
+## Example: "ddev db-export", "ddev db-export OtherConnection"
+
+mkdir -p "${DDEV_APPROOT}/.ddev/backup"
+
+dbConnection=Default
+if [ -n "$*" ]; then
+  dbConnection="$*"
+fi
+
+ddev typo3 database:export \
+--no-interaction \
+--connection "${dbConnection}" \
+--exclude 'cache_*' \
+--exclude '[bf]e_sessions' \
+--exclude sys_history \
+--exclude sys_lockedrecords \
+--exclude sys_log \
+| gzip -9 > "${DDEV_APPROOT}/.ddev/backup/db-dump.sql.gz"

@@ -1,0 +1,33 @@
+base: 'https://www.typo3-dist.sunzity.de/'
+baseVariants:
+  -
+    base: 'https://www.example.com/'
+    condition: 'applicationContext == "Production/Stage"'
+  -
+    base: 'https://www.example.com/'
+    condition: 'applicationContext == "Development"'
+  -
+    base: 'https://projektarbeit.ddev.site/'
+    condition: 'applicationContext == "Development/Local"'
+languages:
+  -
+    title: English
+    enabled: true
+    languageId: 0
+    base: /
+    typo3Language: default
+    locale: en_US.UTF-8
+    iso-639-1: en
+    navigationTitle: English
+    hreflang: en-us
+    direction: ltr
+    flag: us
+rootPageId: 1
+websiteTitle: '%env(TYPO3_SYS_SITENAME)%'
+routeEnhancers:
+  PageTypeSuffix:
+    type: PageType
+    default: ''
+    map:
+      /: 0
+      robots.txt: 201

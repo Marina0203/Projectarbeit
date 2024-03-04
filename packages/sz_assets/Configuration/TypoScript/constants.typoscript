@@ -1,0 +1,3 @@
+// External imports
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/constants.typoscript'
+@import 'EXT:sz_content_elements/Configuration/TypoScript/constants.typoscript'

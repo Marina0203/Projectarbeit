@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:sz_content_elements/Resources/Private/Language/locallang_ff.xlf" date="2023-06-03T13:38:06Z" product-name="sz_content_elements">
+		<header />
+		<body>
+			<trans-unit id="tt_content.piFlexForm.label" resname="tt_content.piFlexForm.label">
+				<source>Settings</source>
+				<target>Einstellungen</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

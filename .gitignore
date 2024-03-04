@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+nbproject
+/.npm
+/node_modules
+/var/*
+!/var/labels
+/vendor
+/public/*
+!/public/.htaccess
+!/public/typo3conf
+/public/typo3conf/*
+/config/system
+/.php-cs-fixer.cache
+/packages/site-distribution/Resources/Public

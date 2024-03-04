@@ -1,0 +1,5 @@
+mod.wizards.newContentElement.wizardItems {
+  sz {
+    header = LLL:EXT:sz_content_elements/Resources/Private/Language/locallang_be.xlf:tt_content.CType.div.szcontentelements
+  }
+}

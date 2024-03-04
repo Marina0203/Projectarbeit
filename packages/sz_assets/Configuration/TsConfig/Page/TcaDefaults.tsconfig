@@ -1,0 +1,10 @@
+TCAdefaults {
+  pages {
+    // Hide page if no translation for current language exists
+    l18n_cfg = 2
+  }
+
+  tt_content {
+    header_layout = 2
+  }
+}

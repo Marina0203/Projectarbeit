@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## #custom
+## Description: Updates the database schema by doing all changes
+## Usage: db-update
+## Example: "ddev db-update", "ddev db-update -a", "ddev db-update --all"
+
+schemaUpdateType=safe
+if [[ "$1" == "--all" || "$1" == "-a" ]]; then
+    schemaUpdateType=destructive
+    shift # Remove the option from the arguments
+fi
+
+ddev typo3 database:updateschema --no-interaction --raw "table.add,field.add,${schemaUpdateType}"
