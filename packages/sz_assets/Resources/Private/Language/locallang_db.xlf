@@ -3,8 +3,38 @@
 	<file source-language="en" datatype="plaintext" original="EXT:sz_assets/Resources/Private/Language/locallang_db.xlf" date="2023-03-03T15:24:52Z" product-name="sz_assets">
 		<header />
 		<body>
-			<trans-unit id="tt_content.header_layout.label" resname="tt_content.header_layout.label">
-				<source>Header Tag</source>
+			<trans-unit id="tx_szassets_domain_model_booking">
+				<source>Booking</source>
+			</trans-unit>
+			<trans-unit id="tx_szassets_domain_model_room">
+				<source>Room</source>
+			</trans-unit>
+			<trans-unit id="custom_table.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="custom_table.first_name">
+				<source>First Name</source>
+			</trans-unit>
+			<trans-unit id="custom_table.last_name">
+				<source>Last Name</source>
+			</trans-unit>
+			<trans-unit id="custom_table.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="custom_table.start_date">
+				<source>Start Date</source>
+			</trans-unit>
+			<trans-unit id="custom_table.end_date">
+				<source>End Date</source>
+			</trans-unit>
+			<trans-unit id="custom_table.room">
+				<source>Room</source>
+			</trans-unit>
+			<trans-unit id="custom_table.seat_count">
+				<source>Seat Count</source>
+			</trans-unit>
+			<trans-unit id="custom_table.bookable">
+				<source>Bookable</source>
 			</trans-unit>
 		</body>
 	</file>

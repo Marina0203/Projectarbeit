@@ -3,8 +3,9 @@ CREATE TABLE tx_szassets_domain_model_room
 	uid        int(11) unsigned DEFAULT 0 NOT NULL auto_increment,
 	pid        int(11) DEFAULT 0 NOT NULL,
 
-	title      varchar(60) NOT NULL,
+	title      varchar(60) DEFAULT '' NOT NULL,
 	seat_count int(11) DEFAULT '0' NOT NULL,
+	bookable   tinyint(4) unsigned DEFAULT 0 NOT NULL,
 
 	tstamp     int(11) unsigned DEFAULT 0 NOT NULL,
 	crdate     int(11) unsigned DEFAULT 0 NOT NULL,
@@ -15,15 +16,16 @@ CREATE TABLE tx_szassets_domain_model_room
 	KEY        parent (pid),
 );
 
-CREATE TABLE tx_szassets_domain_model_room
+CREATE TABLE tx_szassets_domain_model_booking
 (
 	uid             int(11) unsigned DEFAULT 0 NOT NULL auto_increment,
 	pid             int(11) DEFAULT 0 NOT NULL,
 
 	room            int(11) unsigned DEFAULT '0',
-	user_first_name varchar(60) NOT NULL,
-	user_last_name  varchar(60) NOT NULL,
-	user_email      varchar(60) NOT NULL,
+	user_first_name varchar(60) DEFAULT '' NOT NULL,
+	user_last_name  varchar(60) DEFAULT '' NOT NULL,
+	user_email      varchar(60) DEFAULT '' NOT NULL,
+	start_date      int(11) unsigned DEFAULT 0 NOT NULL,
 	end_date        int(11) unsigned DEFAULT 0 NOT NULL,
 
 	tstamp          int(11) unsigned DEFAULT 0 NOT NULL,

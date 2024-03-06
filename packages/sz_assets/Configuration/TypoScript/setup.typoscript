@@ -13,7 +13,7 @@
 // Helper
 @import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/Development.typoscript'
 @import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/DynamicContent.typoscript'
-@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/SecurityHeaders.typoscript'
+#@import 'EXT:sz_assets/Configuration/TypoScript/Setup/Helper/SecurityHeaders.typoscript'
 
 // Extensions
 @import 'EXT:sz_assets/Configuration/TypoScript/Setup/Extensions/Container.typoscript'

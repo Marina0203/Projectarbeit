@@ -1,0 +1,6 @@
+styles {
+    templates {
+        layoutRootPath = EXT:sz_assets/Private/Extensions/FluidStyledContent/Layouts
+        templateRootPath = EXT:sz_assets/Private/Extensions/FluidStyledContent/Templates
+    }
+}

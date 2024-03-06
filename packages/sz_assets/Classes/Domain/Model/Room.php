@@ -8,6 +8,7 @@ class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     protected string $title = '';
     protected int $seatCount = 0;
+    protected bool $bookable = false;
 
     public function getTitle(): string
     {
@@ -27,5 +28,15 @@ class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setSeatCount(int $seatCount): void
     {
         $this->seatCount = $seatCount;
+    }
+
+    public function isBookable(): bool
+    {
+        return $this->bookable;
+    }
+
+    public function setBookable(bool $bookable): void
+    {
+        $this->bookable = $bookable;
     }
 }

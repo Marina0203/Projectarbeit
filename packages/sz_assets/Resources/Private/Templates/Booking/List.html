@@ -1,0 +1,72 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="Default"/>
+<f:section name="Main">
+    <f:debug>{_all}</f:debug>
+    <div class="container">
+        <h1>
+            BOOKING APP
+        </h1>
+        <f:if condition="{rooms}">
+            <div class="row">
+                <f:for each="{rooms}" as="room" iteration="i">
+                    <div class="col col-md-4">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{room.title}</h5>
+                                <p class="card-text">Seats: {room.seatCount}</p>
+                                <p class="card-text">Bookable: {f:if(condition: room.bookable, then: 'yes', else:
+                                    'no')}</p>
+
+                                <!-- Add a button to open the dialog -->
+                                <button class="btn btn-primary btn-dialog">Book</button>
+                                <dialog id="dialog-{i.cycle}">
+                                    <button class="btn-close" autofocus></button>
+                                    <div class="row">
+                                        <f:form action="book" controller="Booking">
+                                            <f:form.hidden name="room" value="{room}"/>
+                                            <f:form.textfield class="form-control" name="userFirstName"/>
+                                            <f:form.textfield class="form-control" name="userLastName"/>
+                                            <f:form.textfield class="form-control" name="userEmail" type="email"/>
+                                            <f:form.textfield class="form-control" name="startDate" type="date" additionalAttributes="{
+                                                min:'2018-01-01',
+                                                max:'2018-12-31'
+                                            }"/>
+                                            <f:form.textfield name="endDate" type="date" additionalAttributes="{
+                                                min:'2018-01-01',
+                                                max:'2018-12-31'
+                                            }"/>
+                                            <f:form.submit class="btn-primary" value="Book"/>
+                                        </f:form>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+
+            <script>
+                const dialogs = document.querySelectorAll('dialog');
+                const showDialogButton = document.querySelectorAll('.btn-dialog');
+                const closeDialogButton = document.querySelectorAll('.btn-close');
+
+                dialogs.forEach(dialog => {
+                    showDialogButton.forEach(button => {
+                        button.addEventListener('click', () => {
+                            dialog.showModal();
+                        });
+                    });
+
+                    closeDialogButton.forEach(button => {
+                        button.addEventListener('click', () => {
+                            dialog.close();
+                        });
+                    });
+                });
+            </script>
+        </f:if>
+    </div>
+</f:section>
+</html>

@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<header>
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container">
+            <f:if condition="{domaininfo.logo}">
+                <a class="navbar-brand" href="/">
+                    <f:image image="{domaininfo.logo}" alt="{domaininfo.companyname}"/>
+                </a>
+            </f:if>
+            <f:if condition="{mainNavigation -> f:count()}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <f:for each="{mainNavigation}" as="entry">
+                            <li class="nav-item">
+                                <f:link.typolink
+                                        class="nav-link{f:if(condition: '{entry.current}', then: ' active')}"
+                                        parameter="{entry.link}">
+                                    {entry.title}
+                                </f:link.typolink>
+                            </li>
+                        </f:for>
+                        <f:if condition="{careerPage}">
+                            <li class="nav-item ms-lg-4">
+                                <f:link.page class="btn btn-primary" pageUid="{careerPage}">
+                                    Zur Karriereseite
+                                </f:link.page>
+                            </li>
+                        </f:if>
+                    </ul>
+                </div>
+            </f:if>
+        </div>
+    </nav>
+</header>
+</html>
