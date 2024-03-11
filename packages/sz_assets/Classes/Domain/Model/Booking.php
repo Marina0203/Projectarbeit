@@ -13,13 +13,10 @@ class Booking extends AbstractEntity
     protected string $userLastName = '';
     protected string $userEmail = '';
     protected \DateTime $startDate;
-    protected \DateTime $endDate;
 
     public function __construct()
     {
         $this->room = new Room();
-        $this->startDate = new \DateTime();
-        $this->endDate = new \DateTime();
     }
 
     public function getRoom(): ?Room
@@ -70,15 +67,5 @@ class Booking extends AbstractEntity
     public function setStartDate(\DateTime $startDate): void
     {
         $this->startDate = $startDate;
-    }
-
-    public function getEndDate(): \DateTime
-    {
-        return $this->endDate;
-    }
-
-    public function setEndDate(\DateTime $endDate): void
-    {
-        $this->endDate = $endDate;
     }
 }

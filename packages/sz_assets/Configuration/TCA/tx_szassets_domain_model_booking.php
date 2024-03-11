@@ -20,7 +20,7 @@ return [
             'fe_group' => 'fe_group',
         ],
         'title' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:tx_szassets_domain_model_booking',
-        'label' => 'uid',
+        'label' => 'start_date',
         'iconfile' => 'EXT:sz_assets/Resources/Public/Icons/Extension.svg',
         'hideTable' => false,
     ],
@@ -205,16 +205,6 @@ return [
         'start_date' => [
             'exclude' => true,
             'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.start_date',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0,
-            ],
-        ],
-        'end_date' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.end_date',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',

@@ -7,7 +7,22 @@
         <h1>
             BOOKING APP
         </h1>
+        <f:flashMessages as="flashMessages">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <div class="alert alert-error">
+                    <strong>{flashMessage.title}</strong> {flashMessage.message}
+                </div>
+            </f:for>
+        </f:flashMessages>
         <f:if condition="{rooms}">
+            <f:form id="dayUpdate" action="list" controller="Booking" name="booking">
+                <div class="row mb-4">
+                    <div class="col">
+                        <label for="day" class="form-label">Tag</label>
+                        <f:form.textfield id="day" class="form-control" name="day" type="date" value="{day}"/>
+                    </div>
+                </div>
+            </f:form>
             <div class="row">
                 <f:for each="{rooms}" as="room" iteration="i">
                     <div class="col col-md-4">
@@ -15,29 +30,46 @@
                             <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{room.title}</h5>
-                                <p class="card-text">Seats: {room.seatCount}</p>
-                                <p class="card-text">Bookable: {f:if(condition: room.bookable, then: 'yes', else:
-                                    'no')}</p>
+                                <p class="card-text">Max Seats: {room.seatCount}</p>
+                                <f:for each="{roomBookings}" key="uid" as="booking">
+                                    <f:if condition="{uid} === {room.uid}">
+                                        <p class="card-text">Available Seats: {room.seatCount - booking}</p>
+                                        <f:if condition="{room.seatCount - booking} > 0">
+                                            <p class="card-text">Bookable: {f:if(condition: room.bookable, then: 'yes', else:
+                                                'no')}</p>
+                                        </f:if>
 
-                                <!-- Add a button to open the dialog -->
-                                <button class="btn btn-primary btn-dialog">Book</button>
-                                <dialog id="dialog-{i.cycle}">
+                                        <!-- Add a button to open the dialog -->
+                                        <f:if condition="{room.bookable}">
+                                            <button class="btn btn-primary btn-dialog{f:if(condition:'{room.seatCount - booking}', then: ' d-block', else: ' d-none')}">
+                                                Book
+                                            </button>
+                                        </f:if>
+                                    </f:if>
+                                </f:for>
+                                <dialog id="dialog-{i.cycle}" class="w-50">
                                     <button class="btn-close" autofocus></button>
+                                    {room.uid}
                                     <div class="row">
-                                        <f:form action="book" controller="Booking">
-                                            <f:form.hidden name="room" value="{room}"/>
-                                            <f:form.textfield class="form-control" name="userFirstName"/>
-                                            <f:form.textfield class="form-control" name="userLastName"/>
-                                            <f:form.textfield class="form-control" name="userEmail" type="email"/>
-                                            <f:form.textfield class="form-control" name="startDate" type="date" additionalAttributes="{
-                                                min:'2018-01-01',
-                                                max:'2018-12-31'
-                                            }"/>
-                                            <f:form.textfield name="endDate" type="date" additionalAttributes="{
-                                                min:'2018-01-01',
-                                                max:'2018-12-31'
-                                            }"/>
-                                            <f:form.submit class="btn-primary" value="Book"/>
+                                        <f:form action="book" controller="Booking" name="booking">
+                                            <f:form.hidden name="startDate" value="{day}"/>
+                                            <f:form.hidden name="room" value="{room.uid}"/>
+                                            <div class="mb-3">
+                                                <label for="firstName-{i.cycle}" class="form-label">Vorname*</label>
+                                                <f:form.textfield id="firstName-{i.cycle}" class="form-control"
+                                                                  name="userFirstName" required="true"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="lastName-{i.cycle}" class="form-label">Nachname*</label>
+                                                <f:form.textfield id="lastName-{i.cycle}" class="form-control"
+                                                                  name="userLastName" required="true"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email-{i.cycle}" class="form-label">Email*</label>
+                                                <f:form.textfield id="email-{i.cycle}" class="form-control"
+                                                                  name="userEmail" type="email" required="true"/>
+                                            </div>
+                                            <f:form.submit class="btn btn-primary" value="Book"/>
                                         </f:form>
                                     </div>
                                 </dialog>
@@ -48,21 +80,27 @@
             </div>
 
             <script>
+                const daySelect = document.getElementById('day');
                 const dialogs = document.querySelectorAll('dialog');
                 const showDialogButton = document.querySelectorAll('.btn-dialog');
                 const closeDialogButton = document.querySelectorAll('.btn-close');
 
-                dialogs.forEach(dialog => {
-                    showDialogButton.forEach(button => {
-                        button.addEventListener('click', () => {
-                            dialog.showModal();
-                        });
-                    });
+                // On day change, submit the form
+                daySelect.addEventListener('change', () => {
+                    document.querySelector('#dayUpdate').submit();
+                });
 
-                    closeDialogButton.forEach(button => {
-                        button.addEventListener('click', () => {
-                            dialog.close();
-                        });
+                // Add event listeners for showing each dialog
+                showDialogButton.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        dialogs[index].showModal();
+                    });
+                });
+
+                // Add event listeners for closing each dialog
+                closeDialogButton.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        dialogs[index].close();
                     });
                 });
             </script>

@@ -26,7 +26,6 @@ CREATE TABLE tx_szassets_domain_model_booking
 	user_last_name  varchar(60) DEFAULT '' NOT NULL,
 	user_email      varchar(60) DEFAULT '' NOT NULL,
 	start_date      int(11) unsigned DEFAULT 0 NOT NULL,
-	end_date        int(11) unsigned DEFAULT 0 NOT NULL,
 
 	tstamp          int(11) unsigned DEFAULT 0 NOT NULL,
 	crdate          int(11) unsigned DEFAULT 0 NOT NULL,

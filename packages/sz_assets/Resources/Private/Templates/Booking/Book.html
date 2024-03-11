@@ -1,0 +1,26 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="Default"/>
+<f:section name="Main">
+    <f:debug>{_all}</f:debug>
+    <f:if condition="{booking}">
+        <div class="container">
+        <h1>
+            BOOKING APP - Success
+        </h1>
+            <div class="alert alert-success">
+                <strong>Success!</strong> Your booking was successful.
+            </div>
+            <ul>
+                <li>Raum: {booking.room.title}</li>
+                <li>Gebucht für:
+                    <f:format.date format="d.m.y">{booking.startDate}</f:format.date>
+                </li>
+            </ul>
+            <f:link.action action="list" controller="Booking" class="btn btn-primary">
+                Zurück zur Übersicht
+            </f:link.action>
+        </div>
+    </f:if>
+</f:section>
+</html>
