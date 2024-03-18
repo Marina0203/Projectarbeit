@@ -1,0 +1,11 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:comment><!-- Booking Confirmation Email Content --></f:comment>
+Die Buchung war erfolgreich. Hier sind die Details:
+<ul>
+    <li>Raum: {booking.room.title}</li>
+    <li>Gebucht für:
+        <f:format.date format="d.m.y">{booking.startDate}</f:format.date>
+    </li>
+</ul>
+</html>

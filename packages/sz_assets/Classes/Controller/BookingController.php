@@ -8,6 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 use SUNZINET\SzAssets\Domain\Model\Booking;
 use SUNZINET\SzAssets\Domain\Repository\BookingRepository;
 use SUNZINET\SzAssets\Domain\Repository\RoomRepository;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
@@ -72,6 +75,7 @@ class BookingController extends ActionController
     /**
      * @throws IllegalObjectTypeException
      * @throws \Exception
+     * @throws TransportExceptionInterface
      */
     public function bookAction(): ResponseInterface
     {
@@ -108,7 +112,26 @@ class BookingController extends ActionController
         $this->bookingRepository->add($booking);
         $this->persistenceManager->persistAll();
 
+        // send mail
+        $this->sendMail($booking);
+
         $this->view->assign('booking', $booking);
         return $this->htmlResponse();
+    }
+
+    /**
+     * @throws TransportExceptionInterface
+     */
+    private function sendMail(Booking $booking): void
+    {
+        $email = GeneralUtility::makeInstance(FluidEmail::class);
+        $email
+            ->to($booking->getUserEmail())
+            ->from('info@sunzinet.com')
+            ->subject('Booking confirmation')
+            ->format(FluidEmail::FORMAT_HTML)
+            ->setTemplate('BookingConfirmation')
+            ->assign('booking', $booking);
+        GeneralUtility::makeInstance(MailerInterface::class)->send($email);
     }
 }

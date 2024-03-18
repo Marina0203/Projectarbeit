@@ -21,3 +21,7 @@
         require_once $file;
     }
 })();
+
+// Fluid Email Configuration
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][700]
+    = 'EXT:sz_assets/Resources/Private/Templates/Email';
