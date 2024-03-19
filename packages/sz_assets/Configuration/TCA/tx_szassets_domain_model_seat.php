@@ -19,10 +19,10 @@ return [
             'endtime' => 'endtime',
             'fe_group' => 'fe_group',
         ],
-        'title' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:tx_szassets_domain_model_room',
-        'label' => 'title',
+        'title' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:tx_szassets_domain_model_seat',
+        'label' => 'uid',
         'iconfile' => 'EXT:sz_assets/Resources/Public/Icons/Extension.svg',
-        'hideTable' => false,
+        'hideTable' => true,
     ],
 
     'palettes' => [
@@ -82,8 +82,8 @@ return [
                     ],
                 ],
                 'default' => 0,
-                'foreign_table' => 'tx_szassets_domain_model_room',
-                'foreign_table_where' => 'AND tx_szassets_domain_model_room.pid=###CURRENT_PID### AND tx_szassets_domain_model_room.sys_language_uid IN (-1, 0)',
+                'foreign_table' => 'tx_szassets_domain_model_seat',
+                'foreign_table_where' => 'AND tx_szassets_domain_model_seat.pid=###CURRENT_PID### AND tx_szassets_domain_model_seat.sys_language_uid IN (-1, 0)',
             ],
         ],
         'l10n_diffsource' => [
@@ -176,53 +176,31 @@ return [
                 'default' => 0,
             ],
         ],
-        'title' => [
+        'parentid' => [
             'config' => [
-                'behaviour' => [
-                    'allowLanguageSynchronization' => 1,
-                ],
-                'eval' => 'required',
-                'type' => 'input',
-                'max' => 255,
-            ],
-            'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.title',
-            'exclude' => 1,
-        ],
-        'seats' => [
-            'config' => [
-                'appearance' => [
-                    'collapseAll' => 1,
-                    'enabledControls' => [
-                        'delete' => 1,
-                        'dragdrop' => 1,
-                        'hide' => 1,
-                        'info' => 1,
-                        'localize' => 1,
-                        'new' => 1,
-                        'sort' => 1,
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        '',
+                        0,
                     ],
-                    'levelLinksPosition' => 'top',
-                    'showAllLocalizationLink' => 1,
-                    'showNewRecordLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'useSortable' => 1,
                 ],
-                'foreign_field' => 'parentid',
-                'foreign_sortby' => 'sorting',
-                'foreign_table' => 'tx_szassets_domain_model_seat',
-                'foreign_table_field' => 'parenttable',
-                'maxitems' => '10',
-                'minitems' => '0',
-                'type' => 'inline',
+                'default' => 0,
+                'foreign_table' => 'tt_content',
+                'foreign_table_where' => 'AND tt_content.pid=###CURRENT_PID### AND tt_content.sys_language_uid IN (-1, ###REC_FIELD_sys_language_uid###)',
             ],
-            'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.seats',
-            'exclude' => 1,
+        ],
+        'parenttable' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
         ],
     ],
     'types' => [
         1 => [
             'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-             title,seats,
+             uid, parentid, parenttable,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;;hidden,--palette--;;access',
         ],

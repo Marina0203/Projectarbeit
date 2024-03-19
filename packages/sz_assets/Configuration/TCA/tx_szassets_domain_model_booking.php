@@ -175,6 +175,17 @@ return [
                 'maxitems' => 1,
             ],
         ],
+        'seat' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.seat',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_szassets_domain_model_seat',
+                'minitems' => 0,
+                'maxitems' => 1,
+            ],
+        ],
         'user_first_name' => [
             'exclude' => true,
             'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.first_name',
@@ -228,7 +239,7 @@ return [
     'types' => [
         1 => [
             'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-             room, user_first_name, user_last_name, user_email, start_date, end_date,
+             room, seat, user_first_name, user_last_name, user_email, start_date, end_date,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;;hidden,--palette--;;access',
         ],

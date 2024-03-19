@@ -9,6 +9,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Booking extends AbstractEntity
 {
     protected Room|null $room = null;
+    protected Seat|null $seat = null;
     protected string $userFirstName = '';
     protected string $userLastName = '';
     protected string $userEmail = '';
@@ -27,6 +28,16 @@ class Booking extends AbstractEntity
     public function setRoom(?Room $room): void
     {
         $this->room = $room;
+    }
+
+    public function getSeat(): ?Seat
+    {
+        return $this->seat;
+    }
+
+    public function setSeat(?Seat $seat): void
+    {
+        $this->seat = $seat;
     }
 
     public function getUserFirstName(): string

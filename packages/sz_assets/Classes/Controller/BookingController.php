@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use SUNZINET\SzAssets\Domain\Model\Booking;
 use SUNZINET\SzAssets\Domain\Repository\BookingRepository;
 use SUNZINET\SzAssets\Domain\Repository\RoomRepository;
+use SUNZINET\SzAssets\Domain\Repository\SeatRepository;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use TYPO3\CMS\Core\Mail\FluidEmail;
 use TYPO3\CMS\Core\Mail\MailerInterface;
@@ -19,10 +20,13 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class BookingController extends ActionController
 {
+    // Attributes
     protected BookingRepository $bookingRepository;
     protected RoomRepository $roomRepository;
+    protected SeatRepository $seatRepository;
     protected PersistenceManager $persistenceManager;
 
+    // Injects of repositories
     public function injectBookingRepository(BookingRepository $bookingRepository): void
     {
         $this->bookingRepository = $bookingRepository;
@@ -33,6 +37,11 @@ class BookingController extends ActionController
         $this->roomRepository = $roomRepository;
     }
 
+    public function injectSeatRepository(SeatRepository $seatRepository): void
+    {
+        $this->seatRepository = $seatRepository;
+    }
+
     public function __construct(
         PersistenceManager $persistenceManager
     ) {
@@ -40,12 +49,11 @@ class BookingController extends ActionController
     }
 
     /**
+     * This action lists all rooms and bookings for a given day
      * @throws InvalidQueryException
      */
     public function listAction(): ResponseInterface
     {
-        $rooms = $this->roomRepository->findAll();
-
         // if day is set, use it, otherwise use today
         if($this->request->hasArgument('day')) {
             $day = $this->request->getArgument('day');
@@ -53,26 +61,22 @@ class BookingController extends ActionController
             $day = date('Y-m-d');
         }
 
-        // find bookings for the day
+        // get all bookings for the day
         $bookings = $this->bookingRepository->findByDay(strtotime($day));
+        // get all rooms
+        $rooms = $this->roomRepository->findAll();
 
-        // find room bookings for the day
-        $roomBookings = [];
-        foreach ($rooms as $room) {
-            $roomBookings[$room->getUid()] = $this->bookingRepository
-                ->findByRoomAndDate($room, strtotime($day))->count();
-        }
-
+        // assign variables to the view
         $this->view->assignMultiple([
             'bookings' => $bookings,
             'rooms' => $rooms,
-            'roomBookings' => $roomBookings,
             'day' => $day,
         ]);
         return $this->htmlResponse();
     }
 
     /**
+     * This action receives the booking data and creates a new booking entry
      * @throws IllegalObjectTypeException
      * @throws \Exception
      * @throws TransportExceptionInterface
@@ -81,30 +85,29 @@ class BookingController extends ActionController
     {
         $arguments = $this->request->getArguments();
         // if arguments doesn't contain room, userFirstName, userLastName, userEmail, startDate, endDate return to list
-        if (! isset($arguments['room'], $arguments['userFirstName'], $arguments['userLastName'], $arguments['userEmail'], $arguments['startDate'])) {
+        if (! isset($arguments['room'], $arguments['seat'], $arguments['userFirstName'], $arguments['userLastName'], $arguments['userEmail'], $arguments['startDate'])) {
             return $this->redirect('list');
         }
 
         $startDate = new \DateTime($arguments['startDate']);
 
         // check if the room is already booked
-        $bookings = $this->bookingRepository->findByRoomAndDate(
+        $bookings = $this->bookingRepository->findByRoomAndSeatAndDate(
             $this->roomRepository->findByUid((int)$arguments['room']),
+            $this->seatRepository->findByUid((int)$arguments['seat']),
             $startDate->getTimestamp()
         );
 
-        // if the room is already booked, return to list
-        $rooms = $this->roomRepository->findAll();
-        forEach ($rooms as $room) {
-            if ($room->getSeatCount() === $bookings->count()) {
-                $this->addFlashMessage('Room is already booked', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-                return $this->redirect('list');
-            }
+        // if the seat is already booked, return to list
+        if ($bookings->count()) {
+            $this->addFlashMessage('Seat is already booked', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            return $this->redirect('list');
         }
 
         // create a new booking
         $booking = GeneralUtility::makeInstance(Booking::class);
         $booking->setRoom($this->roomRepository->findByUid((int)$arguments['room']));
+        $booking->setSeat($this->seatRepository->findByUid((int)$arguments['seat']));
         $booking->setUserFirstName($arguments['userFirstName']);
         $booking->setUserLastName($arguments['userLastName']);
         $booking->setUserEmail($arguments['userEmail']);
@@ -120,6 +123,7 @@ class BookingController extends ActionController
     }
 
     /**
+     * This function sends a mail to the user
      * @throws TransportExceptionInterface
      */
     private function sendMail(Booking $booking): void
@@ -131,7 +135,7 @@ class BookingController extends ActionController
             ->subject('Booking confirmation')
             ->format(FluidEmail::FORMAT_HTML)
             ->setTemplate('BookingConfirmation')
-            ->assign('booking', $booking);
+            ->assign('booking', $booking); // assign the booking to the template
         GeneralUtility::makeInstance(MailerInterface::class)->send($email);
     }
 }

@@ -29,7 +29,7 @@ class BookingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @throws InvalidQueryException
      */
-    public function findByRoomAndDate($room, $day): array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+    public function findByRoomAndSeatAndDate($room, $seat, $day): array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
     {
         $today = $day;
         $tomorrow = $today + 86400;
@@ -37,6 +37,7 @@ class BookingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->matching(
             $query->logicalAnd(
                 $query->equals('room', $room),
+                $query->equals('seat', $seat),
                 $query->logicalAnd(
                     $query->greaterThanOrEqual('startDate', $today),
                     $query->lessThanOrEqual('startDate', $tomorrow)

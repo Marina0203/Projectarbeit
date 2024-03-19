@@ -4,12 +4,23 @@ declare(strict_types=1);
 
 namespace SUNZINET\SzAssets\Domain\Model;
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     protected string $title = '';
-    protected int $seatCount = 0;
-    protected bool $bookable = false;
 
+    /**
+     * @var ObjectStorage<Seat>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     */
+    protected $seats = null;
+
+    public function __construct()
+    {
+        $this->seats = new ObjectStorage();
+    }
     public function getTitle(): string
     {
         return $this->title;
@@ -20,23 +31,13 @@ class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->title = $title;
     }
 
-    public function getSeatCount(): int
+    public function getSeats(): ?ObjectStorage
     {
-        return $this->seatCount;
+        return $this->seats;
     }
 
-    public function setSeatCount(int $seatCount): void
+    public function setSeats(?ObjectStorage $seats): void
     {
-        $this->seatCount = $seatCount;
-    }
-
-    public function isBookable(): bool
-    {
-        return $this->bookable;
-    }
-
-    public function setBookable(bool $bookable): void
-    {
-        $this->bookable = $bookable;
+        $this->seats = $seats;
     }
 }

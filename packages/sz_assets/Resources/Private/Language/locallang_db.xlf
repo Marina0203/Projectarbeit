@@ -9,6 +9,9 @@
 			<trans-unit id="tx_szassets_domain_model_room">
 				<source>Room</source>
 			</trans-unit>
+			<trans-unit id="tx_szassets_domain_model_seat">
+				<source>Seat</source>
+			</trans-unit>
 			<trans-unit id="custom_table.title">
 				<source>Title</source>
 			</trans-unit>
@@ -30,11 +33,11 @@
 			<trans-unit id="custom_table.room">
 				<source>Room</source>
 			</trans-unit>
-			<trans-unit id="custom_table.seat_count">
-				<source>Seat Count</source>
+			<trans-unit id="custom_table.seat">
+				<source>Seat</source>
 			</trans-unit>
-			<trans-unit id="custom_table.bookable">
-				<source>Bookable</source>
+			<trans-unit id="custom_table.seats">
+				<source>Seats</source>
 			</trans-unit>
 		</body>
 	</file>
