@@ -51,7 +51,6 @@
 		"typo3/cms-workspaces": "~12.4"
 	},
 	"require-dev": {
-		"deployer/deployer": "^7.3",
 		"phpstan/phpstan": "^1.10",
 		"roave/security-advisories": "dev-latest",
 		"typo3/coding-standards": "^0.7"

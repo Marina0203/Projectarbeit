@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+    backupGlobals               = "false"
+    colors                      = "true"
+    processIsolation            = "false"
+    stopOnFailure               = "false"
+>
+    <testsuites>
+        <testsuite name="Unit Tests">
+            <directory>../Tests/Unit/</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <const name="TYPO3_MODE" value="BE" />
+        <ini name="display_errors" value="1" />
+        <env name="TYPO3_CONTEXT" value="Testing" />
+    </php>
+</phpunit>
