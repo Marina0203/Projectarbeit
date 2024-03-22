@@ -45,8 +45,7 @@ class BookingTest extends BaseTestCase
      */
     public function getSeatReturnsInitialValue(): void
     {
-        self::assertEquals(
-            new Seat(),
+        self::assertNull(
             $this->subject->getSeat()
         );
     }
@@ -101,5 +100,44 @@ class BookingTest extends BaseTestCase
     {
         $this->subject->setUserLastName('Last Name');
         self::assertEquals('Last Name', $this->subject->getUserLastName());
+    }
+
+    /**
+     * @test
+     */
+    public function getUserEmailReturnsInitialValue(): void
+    {
+        self::assertSame(
+            '',
+            $this->subject->getUserEmail()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setUserEmailForString(): void
+    {
+        $this->subject->setUserEmail('test@email.de');
+        self::assertEquals('test@email.de', $this->subject->getUserEmail());
+    }
+
+    /**
+     * @test
+     */
+    public function getStartDateReturnsInitialValue(): void
+    {
+        self::assertNull(
+            $this->subject->getStartDate()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setStartDateForInt(): void
+    {
+        $this->subject->setStartDate(new \DateTime('2024-11-11'));
+        self::assertEquals(new \DateTime('2024-11-11'), $this->subject->getStartDate());
     }
 }

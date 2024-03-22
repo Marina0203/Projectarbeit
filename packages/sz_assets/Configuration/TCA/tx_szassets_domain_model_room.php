@@ -188,6 +188,17 @@ return [
             'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.title',
             'exclude' => 1,
         ],
+        'css_class' => [
+            'config' => [
+                'behaviour' => [
+                    'allowLanguageSynchronization' => 1,
+                ],
+                'type' => 'input',
+                'max' => 255,
+            ],
+            'label' => 'LLL:EXT:sz_assets/Resources/Private/Language/locallang_db.xlf:custom_table.css_class',
+            'exclude' => 1,
+        ],
         'seats' => [
             'config' => [
                 'appearance' => [
@@ -222,7 +233,7 @@ return [
     'types' => [
         1 => [
             'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-             title,seats,
+             title,css_class,seats,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;;hidden,--palette--;;access',
         ],

@@ -40,6 +40,26 @@ class RoomTest extends BaseTestCase
     /**
      * @test
      */
+    public function getCssClassReturnsInitialValue(): void
+    {
+        self::assertSame(
+            '',
+            $this->subject->getCssClass()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setCssClassForString(): void
+    {
+        $this->subject->setCssClass('d-none');
+        self::assertEquals('d-none', $this->subject->getCssClass());
+    }
+
+    /**
+     * @test
+     */
     public function getSeatsReturnsInitialValue(): void
     {
         self::assertEquals(

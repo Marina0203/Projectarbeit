@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace SUNZINET\SzAssets\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Room extends AbstractEntity
 {
     protected string $title = '';
+    protected string $cssClass = '';
 
     /**
      * @var ObjectStorage<Seat>
@@ -29,6 +31,16 @@ class Room extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    public function getCssClass(): string
+    {
+        return $this->cssClass;
+    }
+
+    public function setCssClass(string $cssClass): void
+    {
+        $this->cssClass = $cssClass;
     }
 
     public function getSeats(): ?ObjectStorage

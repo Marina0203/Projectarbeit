@@ -30,7 +30,7 @@
                 <div class="row">
                     <f:comment><!-- Auflistung der Räume --></f:comment>
                     <f:for each="{rooms}" as="room" iteration="i">
-                        <div class="col col-md-4 mb-4">
+                        <div class="col col-md-4 mb-4{f:if(condition: room.cssClass, then: ' {room.cssClass}')}">
                             <div class="card bg-dark">
                                 <div class="card-body">
                                     <h5 class="card-title">{room.title}</h5>
