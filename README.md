@@ -41,7 +41,9 @@ This command has to be executed in the ddev container.
 ```
 cd packages/sz_assets && composer install
 ```
-Run all tests:
+### Run all tests:
+The test requires docker-compose to be installed on your local machine. \
+This command has to be executed on your local terminal.
 ```bash
 packages/sz_assets/Build/Scripts/runTest.sh
 ```
