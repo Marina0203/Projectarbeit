@@ -10,7 +10,7 @@ class RoomRepositoryTest extends FunctionalTestCase
     /**
      * @var RoomRepository
      */
-    protected $subject = null;
+    protected RoomRepository $subject;
     protected array $testExtensionsToLoad = ['typo3conf/ext/sz_assets'];
 
     protected function setUp(): void
