@@ -5,10 +5,11 @@
     colors="true"
     processIsolation="false"
     stopOnFailure="false"
+    stopOnSkipped="false"
 >
     <testsuites>
-        <testsuite name="Unit Tests">
-            <directory>../Tests/Unit/</directory>
+        <testsuite name="Functional Tests">
+            <directory>../Tests/Functional/</directory>
         </testsuite>
     </testsuites>
 
