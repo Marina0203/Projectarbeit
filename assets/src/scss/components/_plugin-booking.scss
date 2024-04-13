@@ -1,3 +1,24 @@
 .plugin-booking {
-
+    [data-title]:hover:after {
+        opacity: 1;
+        transition: all 0.1s ease 0.5s;
+        visibility: visible;
+    }
+    [data-title]:after {
+        content: attr(data-title);
+        position: absolute;
+        bottom: 5rem;
+        left: -75%;
+        padding: $tooltip-padding-y $tooltip-padding-x $tooltip-padding-y $tooltip-padding-x;
+        color: $tooltip-color;
+        background: $tooltip-bg;
+        white-space: nowrap;
+        border-radius: $tooltip-border-radius;
+        opacity: 0;
+        z-index: 99999;
+        visibility: hidden;
+    }
+    [data-title] {
+        position: relative;
+    }
 }

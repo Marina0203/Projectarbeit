@@ -1,4 +1,6 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://typo3.org/ns/TYPO3Fluid/Fluid/ViewHelpers"
+      xmlns:sz="http://typo3.org/ns/SUNZINET/SzAssets/ViewHelpers"
       data-namespace-typo3-fluid="true">
 <f:layout name="Default"/>
 <f:section name="Main">
@@ -36,60 +38,40 @@
                                     <h5 class="card-title">{room.title}</h5>
                                     <f:comment><!-- Auflistung der Sitzplätze --></f:comment>
                                     <f:for each="{room.seats}" as="seat" iteration="i">
-                                        <f:comment><!-- Wenn es schon Buchungen gibt - Logik für Sperrung des Buchungsbuttons --></f:comment>
-                                        <f:if condition="{bookings}">
-                                            <f:then>
-                                                <f:for each="{bookings}" as="booking">
-                                                    <f:if condition="{booking.seat.uid} == {seat.uid}">
-                                                        <f:then>
-                                                            <button class="btn btn-danger"></button>
-                                                        </f:then>
-                                                        <f:else>
-                                                            <button class="btn btn-primary btn-dialog"></button>
-                                                        </f:else>
-                                                    </f:if>
-                                                </f:for>
-                                            </f:then>
-                                            <f:else>
-                                                <button class="btn btn-primary btn-dialog"></button>
-                                            </f:else>
-                                        </f:if>
+                                        <sz:seat bookings="{bookings}" seatId="{seat.uid}"/>
+
+                                        <f:comment><!-- Dialog windows for each seat --></f:comment>
+                                        <dialog id="dialog-{seat.uid}" class="w-50">
+                                            <button class="btn-close" data-dialog="dialog-{seat.uid}" autofocus></button>
+                                            Sitzplatz ID: {seat.uid}
+                                            <div class="row">
+                                                <f:form action="book" controller="Booking" name="booking">
+                                                    <f:form.hidden name="startDate" value="{day}"/>
+                                                    <f:form.hidden name="room" value="{room.uid}"/>
+                                                    <f:form.hidden name="seat" value="{seat.uid}"/>
+                                                    <div class="mb-3">
+                                                        <label for="firstName-{i.cycle}" class="form-label">Vorname*</label>
+                                                        <f:form.textfield id="firstName-{i.cycle}" class="form-control"
+                                                                          name="userFirstName" required="true"/>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="lastName-{i.cycle}" class="form-label">Nachname*</label>
+                                                        <f:form.textfield id="lastName-{i.cycle}" class="form-control"
+                                                                          name="userLastName" required="true"/>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="email-{i.cycle}" class="form-label">Email*</label>
+                                                        <f:form.textfield id="email-{i.cycle}" class="form-control"
+                                                                          name="userEmail" type="email" required="true"/>
+                                                    </div>
+                                                    <f:form.submit class="btn btn-primary" value="Book"/>
+                                                </f:form>
+                                            </div>
+                                        </dialog>
                                     </f:for>
                                 </div>
                             </div>
                         </div>
-
-
-                        <f:comment><!-- Dialog Boxen mit Formular zum Buchen eines Sitzplatzes --></f:comment>
-                        <f:for each="{room.seats}" as="seat" iteration="i">
-                            <dialog id="dialog-{i.cycle}" class="w-50">
-                                <button class="btn-close" autofocus></button>
-                                Sitzplatz ID: {seat.uid}
-                                <div class="row">
-                                    <f:form action="book" controller="Booking" name="booking">
-                                        <f:form.hidden name="startDate" value="{day}"/>
-                                        <f:form.hidden name="room" value="{room.uid}"/>
-                                        <f:form.hidden name="seat" value="{seat.uid}"/>
-                                        <div class="mb-3">
-                                            <label for="firstName-{i.cycle}" class="form-label">Vorname*</label>
-                                            <f:form.textfield id="firstName-{i.cycle}" class="form-control"
-                                                              name="userFirstName" required="true"/>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="lastName-{i.cycle}" class="form-label">Nachname*</label>
-                                            <f:form.textfield id="lastName-{i.cycle}" class="form-control"
-                                                              name="userLastName" required="true"/>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email-{i.cycle}" class="form-label">Email*</label>
-                                            <f:form.textfield id="email-{i.cycle}" class="form-control"
-                                                              name="userEmail" type="email" required="true"/>
-                                        </div>
-                                        <f:form.submit class="btn btn-primary" value="Book"/>
-                                    </f:form>
-                                </div>
-                            </dialog>
-                        </f:for>
                     </f:for>
                 </div>
             </f:if>
@@ -109,16 +91,16 @@
         });
 
         // Add event listeners for showing each dialog
-        showDialogButton.forEach((button, index) => {
+        showDialogButton.forEach((button) => {
             button.addEventListener('click', () => {
-                dialogs[index].showModal();
+                dialogs[button.id-1].showModal();
             });
         });
 
         // Add event listeners for closing each dialog
-        closeDialogButton.forEach((button, index) => {
+        closeDialogButton.forEach((button) => {
             button.addEventListener('click', () => {
-                dialogs[index].close();
+                document.querySelector(`#${button.dataset.dialog}`).close();
             });
         });
     </script>
