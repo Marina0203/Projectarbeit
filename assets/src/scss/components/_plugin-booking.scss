@@ -21,4 +21,26 @@
     [data-title] {
         position: relative;
     }
+    .card {
+        min-height: 165px;
+        .card-title {
+            color: $white;
+        }
+        .card-body {
+            max-width: 165px;
+            .btn-dialog {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    .disabled {
+        padding: 0 3rem;
+        .bg-dark {
+            background-color: gray !important;
+            border: 5px solid $dark;
+        }
+    }
+    .invisible {
+        visibility: hidden;
+    }
 }
