@@ -18,6 +18,8 @@ use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
+use function PHPUnit\Framework\throwException;
+
 class BookingController extends ActionController
 {
     // Attributes
@@ -84,9 +86,9 @@ class BookingController extends ActionController
     public function bookAction(): ResponseInterface
     {
         $arguments = $this->request->getArguments();
-        // if arguments doesn't contain room, userFirstName, userLastName, userEmail, startDate, endDate return to list
-        if (! isset($arguments['room'], $arguments['seat'], $arguments['userFirstName'], $arguments['userLastName'], $arguments['userEmail'], $arguments['startDate'])) {
-            return $this->redirect('list');
+        // if arguments don't contain one of the required fields, throw an exception
+        if (!$arguments['room'] || !$arguments['seat'] || !$arguments['userFirstName'] || !$arguments['userLastName'] || !$arguments['userEmail'] || !$arguments['startDate']) {
+            throw new \Exception('Missing required fields');
         }
 
         $startDate = new \DateTime($arguments['startDate']);

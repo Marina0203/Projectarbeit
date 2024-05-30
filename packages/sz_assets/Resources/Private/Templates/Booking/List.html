@@ -34,45 +34,44 @@
                     <f:for each="{rooms}" as="room" iteration="i">
                         <div class="col col-md-4 mb-4{f:if(condition: room.cssClass, then: ' {room.cssClass}')}">
                             <div class="card bg-dark">
-                                <div class="card-body">
+                                <div id="{room.uid}" class="card-body">
                                     <h5 class="card-title">{room.title}</h5>
                                     <f:comment><!-- Auflistung der Sitzplätze --></f:comment>
                                     <f:for each="{room.seats}" as="seat" iteration="i">
                                         <sz:seat bookings="{bookings}" seatId="{seat.uid}"/>
-
-                                        <f:comment><!-- Dialog windows for each seat --></f:comment>
-                                        <dialog id="dialog-{seat.uid}" class="w-50">
-                                            <button class="btn-close" data-dialog="dialog-{seat.uid}" autofocus></button>
-                                            Sitzplatz ID: {seat.uid}
-                                            <div class="row">
-                                                <f:form action="book" controller="Booking" name="booking">
-                                                    <f:form.hidden name="startDate" value="{day}"/>
-                                                    <f:form.hidden name="room" value="{room.uid}"/>
-                                                    <f:form.hidden name="seat" value="{seat.uid}"/>
-                                                    <div class="mb-3">
-                                                        <label for="firstName-{i.cycle}" class="form-label">Vorname*</label>
-                                                        <f:form.textfield id="firstName-{i.cycle}" class="form-control"
-                                                                          name="userFirstName" required="true"/>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="lastName-{i.cycle}" class="form-label">Nachname*</label>
-                                                        <f:form.textfield id="lastName-{i.cycle}" class="form-control"
-                                                                          name="userLastName" required="true"/>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="email-{i.cycle}" class="form-label">Email*</label>
-                                                        <f:form.textfield id="email-{i.cycle}" class="form-control"
-                                                                          name="userEmail" type="email" required="true"/>
-                                                    </div>
-                                                    <f:form.submit class="btn btn-primary" value="Book"/>
-                                                </f:form>
-                                            </div>
-                                        </dialog>
                                     </f:for>
                                 </div>
                             </div>
                         </div>
                     </f:for>
+
+                    <f:comment><!-- Dialog window --></f:comment>
+                    <dialog id="dialog" class="w-50">
+                        <button class="btn-close" data-dialog="dialog" autofocus></button>
+                        <div class="row">
+                            <f:form action="book" controller="Booking" name="booking">
+                                <f:form.hidden name="startDate" value="{day}"/>
+                                <f:form.hidden id="bookingRoom" name="room" value="0"/>
+                                <f:form.hidden id="bookingSeat" name="seat" value="0"/>
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">Vorname*</label>
+                                    <f:form.textfield id="firstName" class="form-control"
+                                                      name="userFirstName" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Nachname*</label>
+                                    <f:form.textfield id="lastName" class="form-control"
+                                                      name="userLastName" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email*</label>
+                                    <f:form.textfield id="email" class="form-control"
+                                                      name="userEmail" type="email" required="true"/>
+                                </div>
+                                <f:form.submit class="btn btn-primary" value="Book"/>
+                            </f:form>
+                        </div>
+                    </dialog>
                 </div>
             </f:if>
         </div>
@@ -81,27 +80,33 @@
     <f:comment><!-- JavaScript Funktion für die Dialog Boxen --></f:comment>
     <script>
         const daySelect = document.getElementById('day');
-        const dialogs = document.querySelectorAll('dialog');
+        const dialog = document.querySelector('dialog');
         const showDialogButton = document.querySelectorAll('.btn-dialog');
-        const closeDialogButton = document.querySelectorAll('.btn-close');
+        const closeDialogButton = document.querySelector('.btn-close');
 
         // On day change, submit the form
         daySelect.addEventListener('change', () => {
             document.querySelector('#dayUpdate').submit();
         });
 
+        // On seat click, prefill bookingRoom and bookingSeat values
+        showDialogButton.forEach((seat) => {
+            seat.addEventListener('click', () => {
+                document.querySelector('#bookingRoom').value = seat.parentElement.id;
+                document.querySelector('#bookingSeat').value = seat.id;
+            });
+        });
+
         // Add event listeners for showing each dialog
         showDialogButton.forEach((button) => {
             button.addEventListener('click', () => {
-                dialogs[button.id-1].showModal();
+                dialog.showModal();
             });
         });
 
         // Add event listeners for closing each dialog
-        closeDialogButton.forEach((button) => {
-            button.addEventListener('click', () => {
-                document.querySelector(`#${button.dataset.dialog}`).close();
-            });
+        closeDialogButton.addEventListener('click', (e) => {
+            document.querySelector(e.target.dataset.dialog).close();
         });
     </script>
 </f:section>
